@@ -6,8 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BaseController {
 
+
+
     @RequestMapping("/")
     public String index() {
         return Helpers.IndexPage();
     }
+
+
 }
