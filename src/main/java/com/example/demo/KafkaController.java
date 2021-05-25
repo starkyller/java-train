@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.mem_db.InMemDB;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,8 @@ public class KafkaController {
     @Autowired
     KafkaTemplate<String, String> kafkaTemplate;
 
-    private static final String topic = "important-message";
+    @Value("${cloudkarafka.topic}")
+    private String topic;
 
     @GetMapping("/publish/{message}")
     public String post(@PathVariable("message") final String message){

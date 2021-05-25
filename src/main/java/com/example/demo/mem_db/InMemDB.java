@@ -5,37 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InMemDB {
-        // static variable single_instance of type Singleton
-        private static InMemDB single_instance = null;
+    private static InMemDB single_instance = null;
 
+    private List<String> _messages;
 
+    private InMemDB()
+    {
+        _messages = new ArrayList<String>();
+    }
 
-    // variable of type String
-        private List<String> _messages;
+    public static InMemDB getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new InMemDB();
 
-        // private constructor restricted to this class itself
-        private InMemDB()
-        {
-            _messages = new ArrayList<String>();
-        }
+        return single_instance;
+    }
 
-        // static method to create instance of Singleton class
-        public static InMemDB getInstance()
-        {
-            if (single_instance == null)
-                single_instance = new InMemDB();
+    public List<String> getMessages(){
+        return _messages;
+    }
 
-            return single_instance;
-        }
-
-        public List<String> getMessages(){
-            return _messages;
-        }
-
-        public void appendMessage(String message) {
-            _messages.add(message);
-        }
-
+    public void appendMessage(String message) {
+        _messages.add(message);
+    }
 
     @Override
     public String toString() {
