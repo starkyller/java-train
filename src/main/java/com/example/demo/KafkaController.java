@@ -21,13 +21,14 @@ public class KafkaController {
     public String post(@PathVariable("message") final String message){
         kafkaTemplate.send(topic, message);
 
-        return "Published !!!";
+        return "Published !!!" + Helpers.returnHome();
     }
 
     @GetMapping("/messages")
     public String get() {
         InMemDB memdb = InMemDB.getInstance();
 
-        return memdb.getMessages().toString();
+        return memdb.getMessages().toString()
+                + Helpers.returnHome();
     }
 }
